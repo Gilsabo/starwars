@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 interface Starship {
   name: string;
+  model: string;
 }
 
 export default function App() {
@@ -28,7 +29,12 @@ export default function App() {
     <div>
       <h1>hi!</h1>
       <h2>Starhsips</h2>
-      {ships?.map((ship) => <div key={`div-${ship.name}`}>{ship.name}</div>)}
+      {ships?.map((ship) => (
+        <ul key={`div-${ship.name}`}>
+          <li>{ship.name}</li>
+          <li>{ship.name}</li>
+        </ul>
+      ))}
     </div>
   );
 }
