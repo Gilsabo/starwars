@@ -32,7 +32,7 @@ export default function App() {
       {ships?.map((ship) => (
         <ul key={`div-${ship.name}`}>
           <li>{ship.name}</li>
-          <li>{ship.name}</li>
+          <li>{ship.model}</li>
         </ul>
       ))}
     </div>
