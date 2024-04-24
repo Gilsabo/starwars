@@ -1,40 +1,28 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import StarshipCard from './components/StarshipCard';
+import StarshipsLoader from './components/StarshipsLoader';
 
-interface Starship {
+export type Starship = {
   name: string;
   model: string;
-}
+  url: string;
+};
+
+const queryClient = new QueryClient();
 
 export default function App() {
-  const [ships, setShips] = useState<Starship[]>();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          'https://swapi.py4e.com/api/starships/?page=1',
-        );
-        const shipsInfo = await response.json();
-        setShips(shipsInfo.results);
-        console.log('ships', shipsInfo);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-  console.log(ships);
   return (
-    <div>
-      <h1>hi!</h1>
-      <h2>Starhsips</h2>
-      {ships?.map((ship) => (
-        <ul key={`div-${ship.name}`}>
-          <li>{ship.name}</li>
-          <li>{ship.model}</li>
-        </ul>
-      ))}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="starships" element={<StarshipsLoader />} />
+        <Route path="starships/:id" element={<StarshipCard />} />
+      </Routes>
+    </QueryClientProvider>
   );
 }
