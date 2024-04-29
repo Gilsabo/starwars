@@ -1,19 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { Starship } from '../App';
+import { getStarships } from '../utils/apis';
 
 export default function Starships() {
   const { isPending, error, data } = useQuery({
     queryKey: ['starshipsData'],
-    queryFn: () =>
-      fetch('https://swapi.py4e.com/api/starships/?page=1').then((res) =>
-        res.json(),
-      ),
+    queryFn: () => getStarships(),
   });
-
-  if (data) {
-    console.log(data);
-  }
 
   if (isPending) return 'Loading...';
   if (error) return 'An error has occurred' + error.message;
