@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import Films from './Films';
+import Pilots from './Pilots';
 
 export default function Starship() {
   const { id } = useParams();
@@ -25,6 +27,8 @@ export default function Starship() {
       <div>{data.model}</div>
       <div>{data.created}</div>
       <div>{data.MGLT}</div>
+      <Pilots />
+      <Films />
     </>
   );
 }
