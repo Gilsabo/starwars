@@ -28,7 +28,7 @@ export default function Starship() {
       <div>{data.created}</div>
       <div>{data.MGLT}</div>
       <Pilots />
-      <Films />
+      <Films films={data.films} />
     </>
   );
 }
