@@ -13,10 +13,6 @@ export default function Starship() {
       ),
   });
 
-  if (data) {
-    console.log(data);
-  }
-
   if (isPending) return 'Loading...';
   if (error) return 'An error has occurred' + error.message;
 
