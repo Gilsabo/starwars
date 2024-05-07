@@ -5,7 +5,7 @@ export async function getStarships() {
 }
 
 export async function getFilm(id: string | undefined) {
-  return await fetch(`https://swapi.py4e.com/api/films/${id}`).then((res) =>
+  return await fetch(`https://swapi.py4e.com/api/films/${id}/`).then((res) =>
     res.json(),
   );
 }
