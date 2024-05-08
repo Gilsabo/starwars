@@ -1,3 +1,6 @@
+import { useQueries } from '@tanstack/react-query';
+import { getFilm } from '../utils/apis';
+
 type Props = {
   films: string[];
 };
@@ -8,13 +11,26 @@ export default function Films(props: Props) {
     return extractId[extractId.length - 2];
   });
 
-  console.log(filmsUrlIds);
+  console.log(filmsUrlIds, props.films);
+
+  const fetchFilmsInfos = useQueries({
+    queries: filmsUrlIds.map((filmId, index) => {
+      return {
+        queryKey: ['user', filmId],
+        queryFn: () => getFilm(filmsUrlIds[index]),
+      };
+    }),
+  });
+
+  console.log(fetchFilmsInfos);
+  const xiii = fetchFilmsInfos.map((filmInfo) => filmInfo);
+  console.log(xiii[0]);
 
   return (
     <div>
       <div>films</div>
-      {props.films.map((film) => (
-        <div key={`div${film}`}>{film}</div>
+      {fetchFilmsInfos.map((filmInfo) => (
+        <div key={`div${filmInfo.data?.title}`}>{filmInfo.data?.title}</div>
       ))}
     </div>
   );
