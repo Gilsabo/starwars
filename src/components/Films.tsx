@@ -30,7 +30,9 @@ export default function Films(props: Props) {
     <div>
       <div>films</div>
       {fetchFilmsInfos.map((filmInfo) => (
-        <div key={`div${filmInfo.data?.title}`}>{filmInfo.data?.title}</div>
+        <div key={`div${filmInfo.data?.title as string}`}>
+          {filmInfo.data?.title}
+        </div>
       ))}
     </div>
   );
