@@ -23,8 +23,6 @@ export default function Films(props: Props) {
   });
 
   console.log(fetchFilmsInfos);
-  const xiii = fetchFilmsInfos.map((filmInfo) => filmInfo);
-  console.log(xiii[0]);
 
   return (
     <div>
