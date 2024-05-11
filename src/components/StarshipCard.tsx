@@ -16,6 +16,8 @@ export default function Starship() {
   if (isPending) return 'Loading...';
   if (error) return 'An error has occurred' + error.message;
 
+  console.log(data);
+
   return (
     <>
       <div>Starhisp {id}</div>
@@ -23,7 +25,7 @@ export default function Starship() {
       <div>{data.model}</div>
       <div>{data.created}</div>
       <div>{data.MGLT}</div>
-      <Pilots />
+      <Pilots pilots={data.pilots} />
       <Films films={data.films} />
     </>
   );
