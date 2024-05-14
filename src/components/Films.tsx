@@ -29,7 +29,10 @@ export default function Films(props: Props) {
       <div>films</div>
       {fetchFilmsInfos.map((filmInfo) => (
         <div key={`div${filmInfo.data?.title as string}`}>
-          {filmInfo.data?.title}
+          <div>{filmInfo.data?.title}</div>
+          {filmInfo.data?.episode_id && (
+            <div>Episode {filmInfo.data?.episode_id}</div>
+          )}
         </div>
       ))}
     </div>
