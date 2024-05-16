@@ -9,3 +9,9 @@ export async function getFilm(id: string | undefined) {
     res.json(),
   );
 }
+
+export async function getPilotName(id: string | undefined) {
+  return await fetch(`https://swapi.py4e.com/api/people/${id}/`).then((res) =>
+    res.json(),
+  );
+}
