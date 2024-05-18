@@ -11,8 +11,6 @@ export default function Pilots(props: Props) {
     return extractId[extractId.length - 2];
   });
 
-  console.log(pilotsUrlIds, props.pilots);
-
   const fetchPilotsNames = useQueries({
     queries: pilotsUrlIds.map((pilotsId, index) => {
       return {
