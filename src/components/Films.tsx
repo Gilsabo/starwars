@@ -22,8 +22,6 @@ export default function Films(props: Props) {
     }),
   });
 
-  console.log(fetchFilmsInfos);
-
   return (
     <div>
       <div>films</div>
