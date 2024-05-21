@@ -11,8 +11,6 @@ export default function Films(props: Props) {
     return extractId[extractId.length - 2];
   });
 
-  console.log(filmsUrlIds, props.films);
-
   const fetchFilmsInfos = useQueries({
     queries: filmsUrlIds.map((filmId, index) => {
       return {
