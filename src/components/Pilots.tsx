@@ -19,7 +19,7 @@ export default function Pilots(props: Props) {
       };
     }),
   });
-  console.log(fetchPilotsNames);
+
   return (
     <>
       <div>Pilots</div>
