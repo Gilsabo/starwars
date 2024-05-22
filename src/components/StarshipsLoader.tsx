@@ -28,7 +28,7 @@ export default function Starships() {
             </Link>
           ))}
         </ul>
-        <button> view more</button>
+        <button>view more</button>
       </section>
     </main>
   );
