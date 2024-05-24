@@ -1,11 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Starship } from '../App';
-import { getStarships } from '../utils/apis';
+import { useInfiniteQuery } from '@tanstack/react-query';
+
+// import { Link } from 'react-router-dom';
+// import { Starship } from '../App';
+// import { getStarships } from '../utils/apis';
 
 export default function Starships() {
-  const [pagination, setPagination] = useState(1);
   // const { isPending, error, data } = useQuery({
   //   queryKey: ['starshipsData'],
   //   queryFn: () => getStarships(),
@@ -35,17 +34,55 @@ export default function Starships() {
   //   </main>
   // );
 
-  const getStarshipsWithPagination = async () => {
+  const getStarshipsWithPagination = async (pageParam: number) => {
     const res = await fetch(
-      `https://swapi.dev/api/starships/?page=${pagination}`,
+      `https://swapi.dev/api/starships/?page=${pageParam}`,
     );
     return res.json();
   };
 
-  return (
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
+  } = useInfiniteQuery({
+    queryKey: ['starships', 'infinite'],
+    queryFn: ({ pageParam = 1 }) => getStarshipsWithPagination(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => lastPage.nextCursor,
+  });
+
+  console.log(data?.pages);
+  console.log(data?.pages);
+  console.log(data?.pageParams, 'params');
+
+  return status === 'pending' ? (
+    <p>Loading...</p>
+  ) : status === 'error' ? (
+    <p>Error: {error.message}</p>
+  ) : (
     <>
-      <div>proof</div>
-      <button onClick={() => setPagination(pagination + 1)}>view more</button>
+      <ul>
+        {data.pages.map((page) =>
+          page.results.map((starship: string) => (
+            <div key={`div-starship-${starship}`}>
+              {starship.name} - {starship.model}
+            </div>
+          )),
+        )}
+      </ul>
+      <button
+        onClick={() => {
+          fetchNextPage();
+        }}
+      >
+        {isFetchingNextPage ? 'Loading...' : 'Load more'}
+      </button>
+      <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
     </>
   );
 }
