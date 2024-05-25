@@ -19,8 +19,8 @@ export default function Starship() {
   return (
     <>
       <div>Starhisp {id}</div>
-      <div>Name {data.name}</div>
-      <div> Model {data.model}</div>
+      <div>{data.name}</div>
+      <div> {data.model}</div>
       <div>{data.created}</div>
       <div>{data.MGLT}</div>
       <Pilots pilots={data.pilots} />
