@@ -4,6 +4,11 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 // import { Starship } from '../App';
 // import { getStarships } from '../utils/apis';
 
+type Page = {
+  name: string;
+  model: string;
+};
+
 export default function Starships() {
   // const { isPending, error, data } = useQuery({
   //   queryKey: ['starshipsData'],
@@ -51,7 +56,7 @@ export default function Starships() {
     status,
   } = useInfiniteQuery({
     queryKey: ['starships', 'infinite'],
-    queryFn: ({ pageParam = 1 }) => getStarshipsWithPagination(pageParam),
+    queryFn: ({ pageParam = 1 }) => getStarshipsWithPagination(pageParam + 1),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
@@ -68,8 +73,8 @@ export default function Starships() {
     <>
       <ul>
         {data.pages.map((page) =>
-          page.results.map((starship: string) => (
-            <div key={`div-starship-${starship}`}>
+          page.results.map((starship: Page) => (
+            <div key={`div-starship-${starship.name}`}>
               {starship.name} - {starship.model}
             </div>
           )),
