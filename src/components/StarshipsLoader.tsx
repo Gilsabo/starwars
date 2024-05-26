@@ -12,8 +12,8 @@ export default function Starships() {
   if (isPending) return 'Loading...';
   if (error) return 'An error has occurred' + error.message;
 
-  const starshipUrlIds: string = data.results.map((ship: Starship) => {
-    const extractId = ship.url.split('/');
+  const starshipUrlIds: string = data.results.map((starship: Starship) => {
+    const extractId = starship.url.split('/');
     return extractId[extractId.length - 2];
   });
 
