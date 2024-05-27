@@ -40,10 +40,21 @@ export default function Starships() {
   // );
 
   const getStarshipsWithPagination = async (pageParam: number) => {
-    const res = await fetch(
-      `https://swapi.dev/api/starships/?page=${pageParam}`,
+    const response = await fetch(
+      `http:///posts?_page=${pageParam}&_sort=title&_limit=2`,
     );
-    return res.json();
+    const data = await response.json();
+    const totalCount = parseInt(
+      response.headers.get('x-total-count') || '0',
+      10,
+    );
+    const hasNext = pageParam * 2 < totalCount;
+
+    return {
+      nextPage: hasNext ? pageParam + 1 : undefined,
+      previousPage: pageParam > 1 ? pageParam - 1 : undefined,
+      results: data, // assuming `data` is the array of starships
+    };
   };
 
   const {
@@ -56,9 +67,9 @@ export default function Starships() {
     status,
   } = useInfiniteQuery({
     queryKey: ['starships', 'infinite'],
-    queryFn: ({ pageParam = 1 }) => getStarshipsWithPagination(pageParam + 1),
+    queryFn: ({ pageParam = 1 }) => getStarshipsWithPagination(pageParam),
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage.nextCursor,
+    getNextPageParam: (prevData) => prevData.nextPage,
   });
 
   console.log(data?.pages);
