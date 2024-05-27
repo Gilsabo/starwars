@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { Starship } from '../App';
 
 // import { Link } from 'react-router-dom';
 // import { Starship } from '../App';
@@ -41,19 +42,14 @@ export default function Starships() {
 
   const getStarshipsWithPagination = async (pageParam: number) => {
     const response = await fetch(
-      `http:///posts?_page=${pageParam}&_sort=title&_limit=2`,
+      `https://swapi.dev/api/starships/?page=${pageParam}`,
     );
     const data = await response.json();
-    const totalCount = parseInt(
-      response.headers.get('x-total-count') || '0',
-      10,
-    );
-    const hasNext = pageParam * 2 < totalCount;
 
     return {
-      nextPage: hasNext ? pageParam + 1 : undefined,
-      previousPage: pageParam > 1 ? pageParam - 1 : undefined,
-      results: data, // assuming `data` is the array of starships
+      nextPage: data.next ? pageParam + 1 : undefined,
+      previousPage: data.previous ? pageParam - 1 : undefined,
+      results: data.results,
     };
   };
 
@@ -73,7 +69,6 @@ export default function Starships() {
   });
 
   console.log(data?.pages);
-  console.log(data?.pages);
   console.log(data?.pageParams, 'params');
 
   return status === 'pending' ? (
@@ -84,7 +79,7 @@ export default function Starships() {
     <>
       <ul>
         {data.pages.map((page) =>
-          page.results.map((starship: Page) => (
+          page.results.map((starship: Starship) => (
             <div key={`div-starship-${starship.name}`}>
               {starship.name} - {starship.model}
             </div>
