@@ -11,35 +11,6 @@ type Page = {
 };
 
 export default function Starships() {
-  // const { isPending, error, data } = useQuery({
-  //   queryKey: ['starshipsData'],
-  //   queryFn: () => getStarships(),
-  // });
-
-  // if (isPending) return 'Loading...';
-  // if (error) return 'An error has occurred' + error.message;
-
-  // const starshipUrlIds: string = data.results.map((ship: Starship) => {
-  //   const extractId = ship.url.split('/');
-  //   return extractId[extractId.length - 2];
-  // });
-
-  // return (
-  //   <main>
-  //     <section>
-  //       <ul>
-  //         {data.results.map((starship: Starship, index: number) => (
-  //           <Link key={`div-${starship.name}`} to={`${starshipUrlIds[index]}`}>
-  //             <li>{starship.name}</li>
-  //             <li>{starship.model}</li>
-  //           </Link>
-  //         ))}
-  //       </ul>
-  //       <button> view more</button>
-  //     </section>
-  //   </main>
-  // );
-
   const getStarshipsWithPagination = async (pageParam: number) => {
     const response = await fetch(
       `https://swapi.dev/api/starships/?page=${pageParam}`,
