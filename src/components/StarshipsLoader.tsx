@@ -2,8 +2,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { Starship } from '../App';
 
 // import { Link } from 'react-router-dom';
-// import { Starship } from '../App';
-// import { getStarships } from '../utils/apis';
 
 type Page = {
   name: string;
