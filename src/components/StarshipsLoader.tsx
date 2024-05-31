@@ -36,9 +36,6 @@ export default function Starships() {
     getNextPageParam: (prevData) => prevData.nextPage,
   });
 
-  console.log(data?.pages);
-  console.log(data?.pageParams, 'params');
-
   const starshipUrlIds: string[] =
     data?.pages.flatMap((page) =>
       page.results.map((ship: Starship) => {
