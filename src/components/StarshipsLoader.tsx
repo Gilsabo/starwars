@@ -2,11 +2,6 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { Starship } from '../App';
 
-type Page = {
-  name: string;
-  model: string;
-};
-
 export default function Starships() {
   const getStarshipsWithPagination = async (pageParam: number) => {
     const response = await fetch(
