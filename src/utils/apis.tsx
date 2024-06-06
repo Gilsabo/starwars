@@ -15,3 +15,16 @@ export async function getPilotName(id: string | undefined) {
     res.json(),
   );
 }
+
+export const getStarshipsWithPagination = async (pageParam: number) => {
+  const response = await fetch(
+    `https://swapi.dev/api/starships/?page=${pageParam}`,
+  );
+  const data = await response.json();
+
+  return {
+    nextPage: data.next ? pageParam + 1 : undefined,
+    previousPage: data.previous ? pageParam - 1 : undefined,
+    results: data.results,
+  };
+};
