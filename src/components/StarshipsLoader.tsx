@@ -35,13 +35,18 @@ export default function Starships() {
   ) : (
     <>
       <ul>
-        {data.pages.map((page) =>
-          page.results.map((starship: Starship, index: number) => (
-            <Link key={`div-${starship.name}`} to={`${starshipUrlIds[index]}`}>
-              <li>{starship.name}</li>
-              <li>{starship.model}</li>
-            </Link>
-          )),
+        {data.pages.flatMap((page) =>
+          page.results.map((starship: Starship) => {
+            const extractId = starship.url.split('/');
+            const starshipId = extractId[extractId.length - 2];
+
+            return (
+              <Link key={starshipId} to={`${starshipId}`}>
+                <li>{starship.name}</li>
+                <li>{starship.model}</li>
+              </Link>
+            );
+          }),
         )}
       </ul>
       <button
