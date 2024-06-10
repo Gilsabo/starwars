@@ -41,7 +41,7 @@ export default function Starships() {
             const starshipId = extractId[extractId.length - 2];
 
             return (
-              <Link key={starshipId} to={`${starshipId}`}>
+              <Link key={`div-${starshipId}`} to={`${starshipId}`}>
                 <li>{starship.name}</li>
                 <li>{starship.model}</li>
               </Link>
