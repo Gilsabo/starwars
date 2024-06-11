@@ -50,8 +50,8 @@ export default function Starships() {
         )}
       </ul>
       <button
-        onClick={() => {
-          fetchNextPage();
+        onClick={async () => {
+          await fetchNextPage();
         }}
       >
         {isFetchingNextPage ? 'Loading...' : 'Load more'}
