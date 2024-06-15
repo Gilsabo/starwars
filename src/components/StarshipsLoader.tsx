@@ -4,20 +4,13 @@ import { Starship } from '../App';
 import { getStarshipsWithPagination } from '../utils/apis';
 
 export default function Starships() {
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery({
-    queryKey: ['starships', 'infinite'],
-    queryFn: ({ pageParam = 1 }) => getStarshipsWithPagination(pageParam),
-    initialPageParam: 1,
-    getNextPageParam: (prevData) => prevData.nextPage,
-  });
+  const { data, error, fetchNextPage, isFetching, isFetchingNextPage, status } =
+    useInfiniteQuery({
+      queryKey: ['starships', 'infinite'],
+      queryFn: ({ pageParam = 1 }) => getStarshipsWithPagination(pageParam),
+      initialPageParam: 1,
+      getNextPageParam: (prevData) => prevData.nextPage,
+    });
 
   const starshipUrlIds: string[] =
     data?.pages.flatMap((page) =>
