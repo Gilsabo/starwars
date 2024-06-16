@@ -20,7 +20,6 @@ export default function Starships() {
       }),
     ) || [];
 
-  console.log('dd', starshipUrlIds);
   return status === 'pending' ? (
     <p>Loading...</p>
   ) : status === 'error' ? (
