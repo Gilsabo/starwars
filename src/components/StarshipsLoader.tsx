@@ -12,14 +12,6 @@ export default function Starships() {
       getNextPageParam: (prevData) => prevData.nextPage,
     });
 
-  const starshipUrlIds: string[] =
-    data?.pages.flatMap((page) =>
-      page.results.map((ship: Starship) => {
-        const extractId = ship.url.split('/');
-        return extractId[extractId.length - 2];
-      }),
-    ) || [];
-
   return status === 'pending' ? (
     <p>Loading...</p>
   ) : status === 'error' ? (
