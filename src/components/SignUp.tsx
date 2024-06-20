@@ -2,9 +2,9 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    email: '', // required
-    password: '', // required
-    username: '', // optional
+    email: '',
+    password: '',
+    username: '',
   });
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
