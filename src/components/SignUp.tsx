@@ -21,22 +21,31 @@ export default function SignUp() {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+
+  console.log(formData, 'FORMDATA');
   return (
     <>
       <div>Sign up</div>
       <form action="" onSubmit={(e) => handleSubmit(e)}>
-        <label>
-          Username
-          <input
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          E-mail
-          <input />
-        </label>
+        <input
+          placeholder="Username"
+          value={formData.username}
+          name="username"
+          onChange={(e) => handleChange(e)}
+        />
+        <input
+          placeholder="Email"
+          value={formData.email}
+          name="email"
+          onChange={(e) => handleChange(e)}
+        />
+        <input
+          placeholder="Password"
+          value={formData.password}
+          name="password"
+          onChange={(e) => handleChange(e)}
+        />
+        <button>Sign Up</button>
       </form>
     </>
   );
