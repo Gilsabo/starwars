@@ -22,7 +22,6 @@ export default function SignUp() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  console.log(formData, 'FORMDATA');
   return (
     <>
       <div>Sign up</div>
