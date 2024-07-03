@@ -1,3 +1,16 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "gilsala_88@hotmail.com",
+      "password": "$2a$10$U8cydbm8XXY0A4cwasT8K.fbJ.AXdQMSRv9W71Y8LvV4egt8fpWee",
+      "username": "gil",
+      "id": 1
+    },
+    {
+      "email": "jodi@hotmail.com",
+      "password": "$2a$10$2I4/MBDtC5/dlC/RckfDme/S6ZaDwTP/KPR6kzrRhJrsrs7i9Ga7.",
+      "username": "jordi",
+      "id": 2
+    }
+  ]
 }
