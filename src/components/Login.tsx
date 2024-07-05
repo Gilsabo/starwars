@@ -21,7 +21,6 @@ export default function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
-  console.log(formData, 'FORMDATA');
   return (
     <div>
       <h1>Login Form</h1>
