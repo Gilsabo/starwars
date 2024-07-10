@@ -6,8 +6,8 @@ export default function Login() {
     password: '', // required
   });
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     await fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -17,8 +17,8 @@ export default function Login() {
       .then((data) => console.log(data.user));
   };
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
   return (
