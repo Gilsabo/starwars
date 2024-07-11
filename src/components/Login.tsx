@@ -24,18 +24,18 @@ export default function Login() {
   return (
     <div>
       <h1>Login Form</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <input
           placeholder="Email"
           value={formData.email}
           name="email"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
         <input
           placeholder="Password"
           value={formData.password}
           name="password"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
         <button>Login</button>
       </form>
