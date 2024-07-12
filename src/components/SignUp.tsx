@@ -7,8 +7,8 @@ export default function SignUp() {
     username: '',
   });
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     await fetch('http://localhost:3000/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -18,8 +18,8 @@ export default function SignUp() {
       .then((data) => console.log(data));
   };
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
   return (
