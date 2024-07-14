@@ -25,12 +25,12 @@ export default function SignUp() {
   return (
     <>
       <div>Sign up</div>
-      <form action="" onSubmit={(e) => handleSubmit(e)}>
+      <form action="" onSubmit={(event) => handleSubmit(event)}>
         <input
           placeholder="Username"
           value={formData.username}
           name="username"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
         <input
           placeholder="Email"
