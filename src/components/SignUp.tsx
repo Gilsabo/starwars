@@ -21,7 +21,7 @@ export default function SignUp() {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
-
+  console.log('form', formData);
   return (
     <>
       <div>Sign up</div>
@@ -36,13 +36,13 @@ export default function SignUp() {
           placeholder="Email"
           value={formData.email}
           name="email"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
         <input
           placeholder="Password"
           value={formData.password}
           name="password"
-          onChange={(e) => handleChange(e)}
+          onChange={(event) => handleChange(event)}
         />
         <button>Sign Up</button>
       </form>
